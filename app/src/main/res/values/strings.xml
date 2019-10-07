@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Group9</string>
+    <string name="choose_a_word">Choose A Word</string>
+    <string name="server_ip_address">Choose Server Ip Address</string>
+
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="gotoupload">GotoUpload</string>
+    <string name="buttonReject">Reject</string>
+    <string name="buttonAccept">Accept</string>
+    <string name="error_message_text">You have not uploaded all the necessary videos. Go Back and Upload.</string>
+    <string-array name="server_ips">
+        <item>10.218.107.121</item>
+    </string-array>
+    <string-array name="spinner_words">
+        <item>buy</item>
+        <item>house</item>
+        <item>fun</item>
+        <item>hope</item>
+        <item>arrive</item>
+        <item>really</item>
+        <item>read</item>
+        <item>lip</item>
+        <item>mouth</item>
+        <item>some</item>
+        <item>communicate</item>
+        <item>write</item>
+        <item>create</item>
+        <item>pretend</item>
+        <item>sister</item>
+        <item>man</item>
+        <item>one</item>
+        <item>drive</item>
+        <item>perfect</item>
+        <item>mother</item>
+    </string-array>
+
+</resources>

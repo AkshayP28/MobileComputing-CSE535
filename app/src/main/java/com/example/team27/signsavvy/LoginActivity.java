@@ -22,7 +22,7 @@ import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
     public static String INTENT_ID = "INTENT_ID";
-    public static String INTENT_EMAIL = "INTENT_EMAIL";
+    public static String LAST_NAME = "LAST_NAME";
     public static String INTENT_WORD = "INTENT_WORD";
     public static String INTENT_TIME_WATCHED = "INTENT_TIME_WATCHED";
     public static String INTENT_TIME_WATCHED_VIDEO = "INTENT_TIME_WATCHED_VIDEO";
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
 
         time_to_login = System.currentTimeMillis();
         sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-        if (sharedPreferences.contains(INTENT_ID) && sharedPreferences.contains(INTENT_EMAIL)) {
+        if (sharedPreferences.contains(INTENT_ID) && sharedPreferences.contains(LAST_NAME)) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             this.finish();
@@ -99,10 +99,10 @@ public class LoginActivity extends AppCompatActivity {
                 id = et_id.getText().toString();
 
                 Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra(INTENT_EMAIL, email);
+                intent.putExtra(LAST_NAME, email);
                 intent.putExtra(INTENT_ID, id);
 
-                if (sharedPreferences.edit().putString(INTENT_EMAIL, email).commit() &&
+                if (sharedPreferences.edit().putString(LAST_NAME, email).commit() &&
                         sharedPreferences.edit().putString(INTENT_ID, id).commit()) {
 
                     time_to_login = System.currentTimeMillis() - time_to_login;

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Group9</string>
+    <string name="app_name">Group 27</string>
     <string name="choose_a_word">Choose A Word</string>
     <string name="server_ip_address">Choose Server Ip Address</string>
 
@@ -14,10 +14,10 @@
         <item>10.218.107.121</item>
     </string-array>
     <string-array name="spinner_words">
-        <item>buy</item>
-        <item>house</item>
-        <item>fun</item>
-        <item>hope</item>
+        <item>Buy</item>
+        <item>House</item>
+        <item>Fun</item>
+        <item>Hope</item>
         <item>arrive</item>
         <item>really</item>
         <item>read</item>

@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.VideoView;
@@ -43,8 +44,9 @@ public class PracticeVideoActivity extends AppCompatActivity {
 
 
     public void play_video(String text) {
-
+        Log.e("Text is ", text);
         String path = Constants.getFilePath(text, getPackageName());
+        //String path = "android://resource/" + getPackageName() + "/" + R.raw.house;
         if (!path.isEmpty()) {
             Uri uri = Uri.parse(path);
             videoview.setVideoURI(uri);

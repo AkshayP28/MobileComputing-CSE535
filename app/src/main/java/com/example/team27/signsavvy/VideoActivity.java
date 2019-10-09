@@ -17,16 +17,26 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import cz.msebera.android.httpclient.Header;
+
 import static com.example.team27.signsavvy.LoginActivity.INTENT_ID;
+import static com.example.team27.signsavvy.LoginActivity.INTENT_SERVER_ADDRESS;
 import static com.example.team27.signsavvy.LoginActivity.INTENT_TIME_WATCHED;
 import static com.example.team27.signsavvy.LoginActivity.INTENT_WORD;
+import static com.example.team27.signsavvy.LoginActivity.LAST_NAME;
 
 public class VideoActivity extends Activity implements SurfaceHolder.Callback {
 
@@ -37,7 +47,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
     private Button mToggleButton;
     private Button uploadButton;
     private TextView tv_timer;
-    String returnfile;
+    String returnfile = "";
     VideoActivity activity;
     String word;
     private boolean mInitSuccesful;
@@ -120,16 +130,60 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
                         time.cancel();
                     }
 
-                    //@TODO-Siddarth returnfile variable has the recorded video path
+
 
                 }
             }
         });
     }
 
-    //    @TODO-siddarth upload functionality
     private void onUploadClicked() {
+            String server_ip = getSharedPreferences(this.getPackageName(), Context.MODE_PRIVATE).getString(INTENT_SERVER_ADDRESS, "10.211.17.171");
+            String group_id = getSharedPreferences(this.getPackageName(), Context.MODE_PRIVATE).getString("group_id", "27");
+            // http://10.218.107.121/cse535/upload_video.php
+            RequestParams params = new RequestParams();
+            if (returnfile.equals("")) {
+                return;
+            }
+            File f = new File(returnfile);
+            if (!f.exists()) {
+                Log.e("TAG", "File not found");
+                return;
+            }
+            // Open the file pointed by the file Path and pass it here
+            try {
+                params.put("uploaded_file", f);
+            } catch (FileNotFoundException e) {
+                Log.e("ERROR", "file not found");
+                return;
+            }
+            params.put("group_id", group_id);
+            params.put("id", "1215148025");
+            params.put("accept", 1);
+            AsyncHttpClient client = new AsyncHttpClient();
+            String url = "http://34.219.189.217/upload_video.php";
+            //String url = "http://" + server_ip + "/cse535/upload_video.php";
+            client.post(url, params, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] bytes) {
+                    // handle success response
+                    Log.e("msg success", statusCode + "");
+                    if (statusCode == 200) {
+                        Toast.makeText(VideoActivity.this, "Successfully uploaded file", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(VideoActivity.this, "Failed to upload file", Toast.LENGTH_SHORT).show();
+                    }
+                }
 
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] bytes, Throwable throwable) {
+                    // handle failure response
+                    Log.e("msg fail", statusCode + "");
+                    Toast.makeText(VideoActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+
+                }
+
+            });
 
     }
 
@@ -160,13 +214,13 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         SimpleDateFormat s = new SimpleDateFormat("ddMMyyyyhhmmss", Locale.US);
         String format = s.format(new Date());
         File file = new File(Environment.getExternalStorageDirectory().getPath() + "/signsavvy/"
-                + sharedPreferences.getString(INTENT_ID, "0000") + "GESTURE_PRACTICE_" + "_0_" + "smadan.mp4");
+                + sharedPreferences.getString(INTENT_ID, "0000") + word + "_PRACTICE_" + "_0_" + sharedPreferences.getString(LAST_NAME, "0000") + ".mp4");
         //just to be safe
 //        GESTURE_PRACTICE_(Practice Number) _USERLASTNAME.mp4
         while (file.exists()) {
             i++;
             file = new File(Environment.getExternalStorageDirectory().getPath() + "/signsavvy/"
-                    + sharedPreferences.getString(INTENT_ID, "0000") + "GESTURE_PRACTICE_" + i + "_smadan.mp4");
+                    + sharedPreferences.getString(INTENT_ID, "0000") + word + "_PRACTICE_" + i + "_" + sharedPreferences.getString(LAST_NAME, "0000") + ".mp4");
         }
 
         if (file.createNewFile()) {

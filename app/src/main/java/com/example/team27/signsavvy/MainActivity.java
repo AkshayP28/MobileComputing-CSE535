@@ -41,7 +41,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.example.team27.signsavvy.LoginActivity.INTENT_EMAIL;
+import static com.example.team27.signsavvy.LoginActivity.LAST_NAME;
 import static com.example.team27.signsavvy.LoginActivity.INTENT_ID;
 import static com.example.team27.signsavvy.LoginActivity.INTENT_SERVER_ADDRESS;
 import static com.example.team27.signsavvy.LoginActivity.INTENT_TIME_WATCHED;
@@ -123,15 +123,15 @@ public class MainActivity extends AppCompatActivity {
         timeStarted = System.currentTimeMillis();
         sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         Intent intent = getIntent();
-        if (intent.hasExtra(INTENT_EMAIL) && intent.hasExtra(INTENT_ID)) {
-            Toast.makeText(this, "User : " + intent.getStringExtra(INTENT_EMAIL), Toast.LENGTH_SHORT).show();
+        if (intent.hasExtra(LAST_NAME) && intent.hasExtra(INTENT_ID)) {
+            Toast.makeText(this, "User : " + intent.getStringExtra(LAST_NAME), Toast.LENGTH_SHORT).show();
 
         } else {
             Toast.makeText(this, "Already Logged In", Toast.LENGTH_SHORT).show();
 
         }
         Constants.email = getSharedPreferences(this.getPackageName(), Context.MODE_PRIVATE)
-                .getString(INTENT_EMAIL, "tchinmai7@asu.edu");
+                .getString(LAST_NAME, "tchinmai7@asu.edu");
         Constants.userId = getSharedPreferences(this.getPackageName(), Context.MODE_PRIVATE)
                 .getString(INTENT_ID, "983837234");
     }

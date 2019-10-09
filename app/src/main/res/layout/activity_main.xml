@@ -28,9 +28,16 @@
 <!--                android:textSize="20sp" />-->
 <!--        </RadioGroup>-->
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12sp"
+            android:text="Select an option" />
+
         <Spinner
             android:id="@+id/sp_words"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:entries="@array/spinner_words"

@@ -1,0 +1,20 @@
+SIGNSavvy Project
+
+AWS link for the recordings of the group members for the different gestures: http://34.219.189.217/files/27/ 
+alternative drive link of the gesture recordings: https://drive.google.com/file/d/1RGQXTIQuc9RkXUhi3_0V-jhwJb48LB2T/view?usp=sharing
+
+import code into Android Studio
+
+Run the app
+
+On the main screen.
+Enter last Name , ASU id which will be used for generating the file name
+
+In the dropdown all the gestures are mentioned, click the gesture to be taken to the practice page.
+
+On the screen 2, the practice video comes up with the PRACTICE button
+
+On screen 3, you can start and stop recording and also have the option to upload.
+It will be uploaded to the ubuntu server.
+
+

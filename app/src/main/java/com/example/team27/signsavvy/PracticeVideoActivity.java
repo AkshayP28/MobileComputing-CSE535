@@ -1,6 +1,7 @@
 package com.example.team27.signsavvy;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -38,6 +39,13 @@ public class PracticeVideoActivity extends AppCompatActivity {
                 }
 
                 startActivity(intent);
+            }
+        });
+        videoview.setOnCompletionListener ( new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                videoview.start();
             }
         });
     }

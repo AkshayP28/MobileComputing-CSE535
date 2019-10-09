@@ -34,7 +34,6 @@ import cz.msebera.android.httpclient.Header;
 
 import static com.example.team27.signsavvy.LoginActivity.INTENT_ID;
 import static com.example.team27.signsavvy.LoginActivity.INTENT_SERVER_ADDRESS;
-import static com.example.team27.signsavvy.LoginActivity.INTENT_TIME_WATCHED;
 import static com.example.team27.signsavvy.LoginActivity.INTENT_WORD;
 import static com.example.team27.signsavvy.LoginActivity.LAST_NAME;
 
@@ -65,9 +64,6 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
         if (getIntent().hasExtra(INTENT_WORD)) {
             word = getIntent().getStringExtra(INTENT_WORD);
-        }
-        if (getIntent().hasExtra(INTENT_TIME_WATCHED)) {
-            time_watched = getIntent().getLongExtra(INTENT_TIME_WATCHED, 0);
         }
         mSurfaceView = (SurfaceView) findViewById(R.id.sv_camera);
         mHolder = mSurfaceView.getHolder();
@@ -256,10 +252,6 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         mMediaRecorder.setVideoFrameRate(30); //might be auto-determined due to lighting
         mMediaRecorder.setVideoEncodingBitRate(3000000);
         mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);// MPEG_4_SP
-        //mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-
-
-        //mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.DEFAULT);
         try {
 
             mMediaRecorder.prepare();

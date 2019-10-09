@@ -1,20 +1,20 @@
 package com.example.team27.signsavvy;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
-
-import java.util.HashSet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,22 +24,23 @@ public class LoginActivity extends AppCompatActivity {
     public static String INTENT_ID = "INTENT_ID";
     public static String LAST_NAME = "LAST_NAME";
     public static String INTENT_WORD = "INTENT_WORD";
-    public static String INTENT_TIME_WATCHED = "INTENT_TIME_WATCHED";
-    public static String INTENT_TIME_WATCHED_VIDEO = "INTENT_TIME_WATCHED_VIDEO";
-    public static String INTENT_URI = "INTENT_URI";
     public static String INTENT_SERVER_ADDRESS = "INTENT_SERVER_ADDRESS";
 
-    @BindView(R.id.et_email)
-    EditText et_email;
+    @BindView(R.id.et_lastName)
+    EditText et_lastName;
 
     @BindView(R.id.et_id)
     EditText et_id;
 
-    @BindView(R.id.bt_login)
-    Button bt_login;
+    @BindView(R.id.sp_words)
+    Spinner sp_words;
 
-    String email;
+    String[] spinnerWordsArray;
+    String lastName;
     String id;
+    String path;
+    boolean firstTime = true;
+
     SharedPreferences sharedPreferences;
     long time_to_login;
     int PERMISSION_ALL = 1;
@@ -66,57 +67,32 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         Stetho.initializeWithDefaults(this);
-
-        time_to_login = System.currentTimeMillis();
-        sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-        if (sharedPreferences.contains(INTENT_ID) && sharedPreferences.contains(LAST_NAME)) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            this.finish();
-
-        }
-    }
-
-    @OnClick(R.id.bt_login)
-    public void login() {
-
         if (!hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
-        } else {
-            if (et_email.getText().toString().isEmpty() || et_id.getText().toString().isEmpty()) {
-                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-                alertDialog.setTitle("ALERT");
-                alertDialog.setMessage("Please Enter Login Information!");
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
-            } else {
-                email = et_email.getText().toString();
-                id = et_id.getText().toString();
+        }
+        spinnerWordsArray = getResources().getStringArray(R.array.spinner_words);
+        sp_words.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra(LAST_NAME, email);
-                intent.putExtra(INTENT_ID, id);
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (et_lastName.getText().toString().isEmpty() || et_id.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Fill in the last name and asu id", Toast.LENGTH_LONG).show();
+                } else {
+                    lastName = et_lastName.getText().toString();
+                    id = et_id.getText().toString();
+                    String text = sp_words.getSelectedItem().toString();
+                   Intent intent = new Intent(getApplicationContext(), PracticeVideoActivity.class);
+                            intent.putExtra("clicked_sign", text);
+                            startActivity(intent);
 
-                if (sharedPreferences.edit().putString(LAST_NAME, email).commit() &&
-                        sharedPreferences.edit().putString(INTENT_ID, id).commit()) {
-
-                    time_to_login = System.currentTimeMillis() - time_to_login;
-
-                    sharedPreferences.edit().putInt(getString(R.string.login), sharedPreferences.getInt(getString(R.string.login), 0) + 1).apply();
-                    HashSet<String> hashset = (HashSet<String>) sharedPreferences.getStringSet("LOGIN_TIME", new HashSet<String>());
-                    hashset.add("LOGIN_ATTEMPT_" + sharedPreferences.getInt(getString(R.string.login), 0) + "_" + id + "_" + email + "_" + time_to_login);
-                    sharedPreferences.edit().putStringSet("LOGIN_TIME", hashset).apply();
-                    startActivity(intent);
-                    this.finish();
 
                 }
             }
-        }
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
     }
 
 }

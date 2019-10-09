@@ -19,7 +19,7 @@
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/et_email"
+        android:id="@+id/et_lastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -40,13 +40,14 @@
         android:maxLength="30"
         android:maxLines="1"
         android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/bt_login"
+    <Spinner
+        android:id="@+id/sp_words"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Login"
-        android:textSize="20sp" />
+        android:layout_margin="10dp"
+        android:entries="@array/spinner_words"
+        android:prompt="@string/choose_a_word">
+
+    </Spinner>
 
 </LinearLayout>

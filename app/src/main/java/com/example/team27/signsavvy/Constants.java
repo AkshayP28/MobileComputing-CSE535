@@ -8,51 +8,50 @@ public class Constants {
     static final int VIDEO_REJECTED = 5555;
     static final int VIDEO_ACCEPTED = 6666;
     static final int REQUEST_SHOW_VIDEO = 7777;
-    static String email;
-    static String userId;
+
 
     static String getFilePath(String text, String packageName) {
         String path = "";
         if (text.equals("Buy")) {
-            path = "android.resource://" + packageName + "/" + R.raw.texas;
+            path = "https://www.signingsavvy.com/media/mp4-ld/6/6442.mp4";
         } else if (text.equals("House")) {
-            path = "android.resource://" + packageName + "/" + R.raw.ohio;
+            path = "https://www.signingsavvy.com/media/mp4-ld/23/23234.mp4";
         } else if (text.equals("Fun")) {
-            path = "android.resource://" + packageName + "/" + R.raw.fun;
+            path = "https://www.signingsavvy.com/media/mp4-ld/22/22976.mp4";
         } else if (text.equals("Hope")) {
-            path = "android.resource://" + packageName + "/" + R.raw.hope;
+            path = "https://www.signingsavvy.com/media/mp4-ld/22/22197.mp4";
         } else if (text.equals("Arrive")) {
-            path = "android.resource://" + packageName + "/" + R.raw.arrive;
+            path = "https://www.signingsavvy.com/media/mp4-ld/14/14210.mp4";
         } else if (text.equals("Really")) {
-            path = "android.resource://" + packageName + "/" + R.raw.really;
+            path = "https://www.signingsavvy.com/media/mp4-ld/24/24977.mp4";
         } else if (text.equals("Read")) {
-            path = "android.resource://" + packageName + "/" + R.raw.read;
+            path = "https://www.signingsavvy.com/media/mp4-ld/7/7042.mp4";
         } else if (text.equals("Lip")) {
-            path = "android.resource://" + packageName + "/" + R.raw.lip;
+            path = "https://www.signingsavvy.com/media/mp4-ld/26/26085.mp4";
         } else if (text.equals("Mouth")) {
-            path = "android.resource://" + packageName + "/" + R.raw.mouth;
+            path = "https://www.signingsavvy.com/media/mp4-ld/22/22188.mp4";
         } else if (text.equals("Some")) {
-            path = "android.resource://" + packageName + "/" + R.raw.some;
+            path = "https://www.signingsavvy.com/media/mp4-ld/23/23931.mp4";
         } else if (text.equals("Communicate")) {
-            path = "android.resource://" + packageName + "/" + R.raw.communicate;
+            path = "https://www.signingsavvy.com/media/mp4-ld/22/22897.mp4";
         } else if (text.equals("Write")) {
-            path = "android.resource://" + packageName + "/" + R.raw.write;
+            path = "https://www.signingsavvy.com/media/mp4-ld/8/8441.mp4";
         } else if (text.equals("Create")) {
-            path = "android.resouace://" + packageName + "/" + R.raw.create;
+            path = "https://www.signingsavvy.com/media/mp4-ld/22/22337.mp4";
         } else if (text.equals("Pretend")) {
-            path = "android.resource://" + packageName + "/" + R.raw.pretend;
+            path = "https://www.signingsavvy.com/media/mp4-ld/25/25901.mp4";
         } else if (text.equals("Sister")) {
-            path = "android.resource://" + packageName + "/" + R.raw.sister;
+            path = "https://www.signingsavvy.com/media/mp4-ld/21/21587.mp4";
         } else if (text.equals("Man")) {
-            path = "android.resource://" + packageName + "/" + R.raw.man;
+            path = "https://www.signingsavvy.com/media/mp4-ld/21/21568.mp4";
         } else if (text.equals("One")) {
-            path = "android.resource://" + packageName + "/" + R.raw.one;
+            path = "https://www.signingsavvy.com/media/mp4-ld/11/11001.mp4";
         } else if (text.equals("Drive")) {
-            path = "android.resource://" + packageName + "/" + R.raw.drive;
+            path = "https://www.signingsavvy.com/media/mp4-ld/23/23918.mp4";
         } else if (text.equals("Perfect")) {
-            path = "android.resource://" + packageName + "/" + R.raw.perfect;
+            path = "https://www.signingsavvy.com/media/mp4-ld/24/24791.mp4";
         } else if (text.equals("Mother")) {
-            path = "android.resource://" + packageName + "/" + R.raw.mother;
+            path = "https://www.signingsavvy.com/media/mp4-ld/21/21571.mp4";
         }
             return path;
         }
